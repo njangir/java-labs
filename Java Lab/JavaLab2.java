@@ -15,49 +15,56 @@
 
 import java.util.Scanner;
 
-class Student{
+class Student {
     String name;
     int id;
     Double grade;
-    Student(String name, int id, Double grade){
-        this.grade = grade;
+
+    Student(String name, int id, Double grade) {
         this.name = name;
         this.id = id;
+        this.grade = grade;
     }
 }
-public class JavaLab2{
-    public static void main(String[] args){
+
+public class JavaLab2 {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Student[] studentArray  = new Student[10];
-        for (Student x: studentArray){
-            x.name = scanner.next();
-            x.id = scanner.nextInt();
-            x.grade = scanner.nextDouble();
+        Student[] studentArray = new Student[10];
+        
+        for (int i = 0; i < studentArray.length; i++) {
+            studentArray[i] = new Student(scanner.next(), scanner.nextInt(), scanner.nextDouble());
         }
-        System.out.println("Initial student array: " );
+
+        System.out.println("Initial student array: ");
         displayStudents(studentArray);
+
         sortStudents(studentArray);
-        System.out.println("After sorting: " );
+
+        System.out.println("After sorting: ");
         displayStudents(studentArray);
+
         scanner.close();
     }
-    public static void displayStudents(Student[] x){
+
+    public static void displayStudents(Student[] x) {
         for (Student student : x) {
-            System.out.println(student.id);
-            System.out.println(student.name);
-            System.out.println(student.grade);
+            System.out.println("ID: " + student.id);
+            System.out.println("Name: " + student.name);
+            System.out.println("Grade: " + student.grade);
         }
     }
-    public static Student[] sortStudents(Student[] x){
-        //implement bubblesort
-        Student temp = new Student(null, 0, 0.0);
-        for (int i = x.length-1; i>0;i--){            
-            for (int j = 0; j<=i;j++){
-                if (x[j].grade>x[j+1].grade) {
-                    //swap
+
+    public static Student[] sortStudents(Student[] x) {
+        // Implement bubble sort
+        Student temp;
+        for (int i = x.length - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (x[j].grade > x[j + 1].grade) {
+                    // Swap
                     temp = x[j];
-                    x[j] = x[j+1];
-                    x[j+1] = temp;
+                    x[j] = x[j + 1];
+                    x[j + 1] = temp;
                 }
             }
         }
